@@ -1,6 +1,7 @@
 const path = require('path');
 const nodeExternals = require('webpack-node-externals');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CopyPlugin = require("copy-webpack-plugin");
 
 const mode = 'development';
 
@@ -41,6 +42,13 @@ const common = {
 		],
 		extensions: [ '.tsx', '.ts', '.js' ],
 	},
+	plugins: [
+		new CopyPlugin({
+			patterns: [
+				{ from: "./source/static/images", to: "./" },
+			],
+		}),
+	],
 };
 
 const clientConfig = {

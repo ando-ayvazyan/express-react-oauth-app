@@ -6,6 +6,7 @@ import {configurePathsHelper} from "./helper/configurePaths.helper";
 import {clientErrorHandlerMiddleware} from "./middleware/clientErrorHandler.middleware";
 import cors from "cors";
 import favicon from "serve-favicon";
+import cookieParser from "cookie-parser";
 
 const app: express.Application = express();
 
@@ -13,6 +14,8 @@ configurePathsHelper({
 	rootPath: path.resolve(__dirname, '../'),
 	publicPath:  path.resolve(__dirname, '../public')
 });
+
+app.use(cookieParser());
 
 app.use(bodyParser.json({limit: "50mb"}));
 app.use(bodyParser.urlencoded({

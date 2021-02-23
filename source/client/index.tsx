@@ -12,7 +12,7 @@ const jsx = (
 	</Router>
 );
 
-ReactDOM.hydrate(
+ReactDOM.render(
 	jsx,
 	document.getElementById( "app" ),
 );

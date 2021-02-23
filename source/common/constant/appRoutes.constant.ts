@@ -1,5 +1,6 @@
 const APP_ROUTES = {
-	USER: '/:user',
+	USER: '/user',
+	GITHUB_HANDLER: '/github/handler',
 	USER_REPO: '/:user/:repo',
 	USER_REPO_COMMITS: '/:user/:repo/commits',
 };
