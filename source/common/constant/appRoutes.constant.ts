@@ -1,8 +1,10 @@
 const APP_ROUTES = {
-	USER: '/user',
-	GITHUB_HANDLER: '/github/handler',
+	ROOT: '/',
+	VIEWER: '/user',
+	USER: '/:user',
 	USER_REPO: '/:user/:repo',
 	USER_REPO_COMMITS: '/:user/:repo/commits',
+	GITHUB_HANDLER: '/github/handler',
 };
 
 const APP_EXTERNAL_ROUTES = {

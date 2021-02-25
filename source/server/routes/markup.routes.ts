@@ -1,6 +1,6 @@
 import express from 'express';
 import {RoutesConfig} from './config/routes.config';
-import * as MarkupController from '../controller/markup.controller';
+import * as markupController from '../controller/markup.controller';
 import * as authMiddleware from '../middleware/auth.middleware';
 
 export class MarkupRoutes extends RoutesConfig {
@@ -13,7 +13,7 @@ export class MarkupRoutes extends RoutesConfig {
             .app
             .get(`*`, [
                 authMiddleware.checkPageAvailability,
-                MarkupController.index
+                markupController.index
             ]);
         return this.app;
     }
