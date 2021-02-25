@@ -2,6 +2,7 @@ import express from 'express';
 import {APP_EXTERNAL_ROUTES, APP_ROUTES} from "common/constant/appRoutes.constant";
 import {showSomethingWrongDisclaimer} from "../helper/response.helper";
 import {request} from "../../common/helper/request.helper";
+import {EHttpStatusCode} from "common/enum/http.enum";
 
 const authenticate = async (req: express.Request, res: express.Response, next: express.NextFunction) => {
     const code = req.query.code;
@@ -29,7 +30,7 @@ const authenticate = async (req: express.Request, res: express.Response, next: e
 
         if (access_token) {
             res.cookie("authorization", access_token);
-            res.redirect(APP_ROUTES.VIEWER);
+            res.redirect(EHttpStatusCode.movePermanently, APP_ROUTES.VIEWER);
         } else {
             showSomethingWrongDisclaimer(res);
         }

@@ -1,5 +1,5 @@
 import { ApiError } from './errors.helper';
-import { get } from 'lodash';
+import get from 'lodash/get';
 import { CONSTANT_MAIN } from "../constant/main.constant";
 import axios from "axios";
 
@@ -9,7 +9,6 @@ import axios from "axios";
  * @param response
  */
 const transformResponse = (response: any) => {
-	console.log(response)
 	if (response.status >= 400) {
 		throw new ApiError({ code: response.status, message: response.error_description || response.statusText })
 	} else {
@@ -31,7 +30,7 @@ interface IReqOptions {
  * @param {IReqOptions} opts
  * @returns {Promise}
  */
-function request(endpoint: string, opts: IReqOptions = {method: "get"}) {
+const request = (endpoint: string, opts: IReqOptions = {method: "get"}) => {
 	const queryParams = opts.queryParams || {};
 	const headers = { 'Content-Type': 'application/json', ...(opts.headers || {}) };
 	const data = opts.body || {};
@@ -41,7 +40,7 @@ function request(endpoint: string, opts: IReqOptions = {method: "get"}) {
 		headers,
 		data,
 		params: queryParams,
-		baseURL: CONSTANT_MAIN.API_URL,
+		baseURL: CONSTANT_MAIN.API_URL
 	})
 		.then(transformResponse)
 		.catch((error: any) => {

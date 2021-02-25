@@ -1,7 +1,7 @@
 import express from 'express';
 import {EHttpStatusCode} from "../../common/enum/http.enum";
 import {APP_EXTERNAL_ROUTES, APP_ROUTES} from "../../common/constant/appRoutes.constant";
-import {formatTextPattern} from "../helper/text.hlper";
+import {formatTextPattern} from "../../common/helper/text.hlper";
 import {showSomethingWrongDisclaimer} from "../helper/response.helper";
 
 const checkPageAvailability = (req: express.Request, res: express.Response, next: express.NextFunction) => {

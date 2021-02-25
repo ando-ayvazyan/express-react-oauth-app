@@ -5,7 +5,7 @@ const HtmlComponent = ({ children, scripts }: { children: string, initialState?:
 	<html>
 	<head>
 		<meta charSet="UTF-8" />
-		<title>Server Side Rendered Index Page</title>
+		<title />
 	</head>
 	<body>
 	<div

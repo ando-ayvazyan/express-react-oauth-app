@@ -1,8 +1,24 @@
 import React from "react";
 import Helmet from "react-helmet";
-import {Link} from "react-router-dom";
+import {onMount} from "client/helper/hooks/lifecycle.helper";
 
-const UserComponent =  () => {
+interface IUserComponentProps {
+	onGetViewer: () => void;
+	isPending: boolean;
+	details: any;
+}
+
+const UserComponent =  (props: IUserComponentProps) => {
+	const {details, isPending, onGetViewer} = props;
+
+	onMount(() => {
+		onGetViewer();
+	});
+
+	if (isPending) {
+		return <div>Loading...</div>;
+	}
+
 	return (
 		<div>
 			<Helmet>
@@ -10,7 +26,7 @@ const UserComponent =  () => {
 				<meta name="description" content="This is a User page" />
 			</Helmet>
 			<div>
-				<Link to={ '/user/repo' } children={'go to user repo page'} />
+				User id - {details?.id}
 			</div>
 		</div>
 	);
