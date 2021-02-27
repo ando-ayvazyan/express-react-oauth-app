@@ -30,7 +30,7 @@ const authenticate = async (req: express.Request, res: express.Response, next: e
 
         if (access_token) {
             res.cookie("authorization", access_token);
-            res.redirect(EHttpStatusCode.movePermanently, APP_ROUTES.VIEWER);
+            res.redirect(EHttpStatusCode.movePermanently, APP_ROUTES.USER);
         } else {
             showSomethingWrongDisclaimer(res);
         }

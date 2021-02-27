@@ -7,14 +7,11 @@ interface IUserRepoParams {
 	repo: string,
 }
 
-const getRepos = async ({user}: {user: IUserRepoParams['user']}) => await request(formatApiUrl(API_ENDPOINTS.USER_REPOS, user));
-
-const getRepo = async ({user, repo}: IUserRepoParams) => await request(formatApiUrl(API_ENDPOINTS.USER_REPO, user, repo));
+const getRepos = async () => await request(API_ENDPOINTS.USER_REPOS);
 
 const getRepoCommits = async ({user, repo}: IUserRepoParams) => await request(formatApiUrl(API_ENDPOINTS.USER_REPO_COMMITS, user, repo));
 
 export const repo = {
 	getRepos,
-	getRepo,
 	getRepoCommits,
 };

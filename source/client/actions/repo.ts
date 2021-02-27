@@ -1,50 +1,32 @@
 import {ReduxAction} from '../helper/reduxAction.helper';
 import {api} from '../api';
 import {IAction} from "client/interface/action";
+import {normalizeResponse} from "../helper/normalizer";
+import {repoListTransformer} from "../helper/transformers/repoListTransformer";
 
 const getUserReposType = new ReduxAction('get-user-repos');
-const getUserRepoType = new ReduxAction('get-user-repo');
 const getUserRepoCommitsType = new ReduxAction('get-user-repo-commits');
 
-const getUserReposAction = ({user}: {user: string}): IAction  => async (dispatch) => {
+const getUserReposAction = (): IAction  => async (dispatch) => {
 	dispatch({
 		type: getUserReposType.process
 	});
 
 	try {
 
-		const result = await api.repo.getRepos({user});
+		const result = await api.repo.getRepos();
 
-		dispatch({
-			type: getUserReposType.success,
-			payload: result
-		});
+		if (result) {
+			dispatch({
+				type: getUserReposType.success,
+				payload: normalizeResponse({data: result, key: 'id', transformer: repoListTransformer})
+			});
+		}
+
 	} catch (error) {
 
 		dispatch({
 			type: getUserReposType.error,
-			payload: error
-		});
-	}
-};
-
-const getUserRepoAction = ({user, repo}: {user: string, repo: string}): IAction => async (dispatch) => {
-	dispatch({
-		type: getUserRepoType.process
-	});
-
-	try {
-
-		const result = await api.repo.getRepo({user, repo});
-
-		dispatch({
-			type: getUserRepoType.success,
-			payload: result
-		});
-	} catch (error) {
-
-		dispatch({
-			type: getUserRepoType.error,
 			payload: error
 		});
 	}
@@ -74,9 +56,7 @@ const getUserRepoCommitsAction = ({user, repo}: {user: string, repo: string}): I
 
 export {
 	getUserReposType,
-	getUserRepoType,
 	getUserRepoCommitsType,
-	getUserRepoAction,
 	getUserReposAction,
 	getUserRepoCommitsAction,
 };

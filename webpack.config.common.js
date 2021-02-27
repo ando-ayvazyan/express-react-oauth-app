@@ -49,12 +49,11 @@ const configClient = {
 				use: 'xml-loader',
 			},
 			{
-				test: /\.css$/i,
-				use: [MiniCssExtractPlugin.loader, 'css-loader'],
-			},
-			{
-				test: /\.(sass|scss)$/,
+				test: /\.(css|scss)$/,
 				use: [
+					{
+						loader: MiniCssExtractPlugin.loader,
+					},
 					{
 						loader: 'css-loader',
 						options: {
@@ -65,16 +64,7 @@ const configClient = {
 					{
 						loader: 'postcss-loader',
 						options: {
-							postcssOptions: {
-								plugins: [
-									[
-										"postcss-preset-env",
-										{
-											// Options
-										},
-									],
-								],
-							},
+							sourceMap: true,
 						},
 					},
 					{
@@ -100,6 +90,9 @@ const configClient = {
 		filename: '[name].js',
 	},
 	plugins: [
+		new MiniCssExtractPlugin({
+			filename: "app.css"
+		}),
 		new CopyPlugin({
 			patterns: [
 				{ from: "./source/static/images", to: "./" },

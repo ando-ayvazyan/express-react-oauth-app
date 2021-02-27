@@ -2,7 +2,7 @@ import { getUserType } from '../../actions/user';
 
 const initialState = {
 	isPending: false,
-	user: {},
+	details: {},
 };
 
 const userReducer = (state = initialState, action: any) => {
@@ -13,7 +13,7 @@ const userReducer = (state = initialState, action: any) => {
 			return {
 				...state,
 				isPending: false,
-				user: { ...state.user, payload}
+				details: { ...state.details, ...payload}
 			};
 		case getUserType.process:
 			return {

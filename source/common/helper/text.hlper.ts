@@ -3,19 +3,15 @@ const formatTextPattern = (text: string, ...args: any[]): string => {
 		return '';
 	}
 
-	return text.replace(/{(\d+)}/g, (match, number) => (
-		(typeof args[number] !== 'undefined' && args[number] !== null) ? args[number] : ''
-	))
+	return text.replace(/:[a-zA-Z]{0,}/g, (match) => args.length ? args.shift() : match);
 };
 
 const formatApiUrl = (text: string, ...args: any[]): string => {
 	if (!args.length) {
-		return '';
+		return text || '';
 	}
 
-	return text.replace(/{([a-z])}/g, (match, number) => (
-		(typeof args[number] !== 'undefined' && args[number] !== null) ? args[number] : ''
-	))
+	return text.replace(/{([a-zA-Z]{0,})}/g, (match) => args.length ? args.shift() : match)
 };
 
 export {

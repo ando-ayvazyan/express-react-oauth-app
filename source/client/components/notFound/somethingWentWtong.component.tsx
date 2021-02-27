@@ -1,5 +1,5 @@
 import React from "react";
-import {APP_ROUTES} from "../../common/constant/appRoutes.constant";
+import {APP_ROUTES} from "../../../common/constant/appRoutes.constant";
 
 const SomethingWentWrongComponent = () => {
 	return (
@@ -8,7 +8,7 @@ const SomethingWentWrongComponent = () => {
 				Something went wrong
 			</h3>
 			<div>
-				<a href={APP_ROUTES.ROOT}>Try again</a>
+				<a href={APP_ROUTES.ROOT}>Go to home page</a>
 			</div>
 		</div>
 	);

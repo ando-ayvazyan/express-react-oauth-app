@@ -1,0 +1,19 @@
+.userPage {
+	display: flex;
+	.avatar {
+		height: 100px;
+		width: 100px;
+		margin-right: 20px;
+		img {
+			height: 100%;
+			width: 100%;
+			border-radius: 100%;
+		}
+	}
+	.userDetails {
+		& > div:not(:first-child) {
+			margin-top: 5px;
+		}
+	}
+}
+
